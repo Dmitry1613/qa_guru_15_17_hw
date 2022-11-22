@@ -1,0 +1,59 @@
+plugins {
+    id 'java'
+    id 'io.qameta.allure' version '2.11.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+def allureVersion = "2.19.0",
+    slf4jVersion = "2.0.3"
+
+allure {
+    report {
+        version.set(allureVersion)
+    }
+    adapter { // отвечает за появление папочки build/allure-results
+        aspectjWeaver.set(true) //обработка аннотации @Step
+        frameworks {
+            junit5 { //название фреймворка
+                adapterVersion.set(allureVersion) //версия интеграции фреймворка и Allure
+            }
+        }
+    }
+}
+
+dependencies {
+    testImplementation(
+            "com.codeborne:selenide:6.9.0",
+            "io.qameta.allure:allure-selenide:$allureVersion",
+            "org.junit.jupiter:junit-jupiter:5.9.0",
+            "com.github.javafaker:javafaker:1.0.2",
+            "org.slf4j:slf4j-simple:$slf4jVersion"
+    )
+}
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+    systemProperties(System.getProperties())
+
+    testLogging {
+        lifecycle {
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
+        }
+    }
+}
+
+task test_full_form(type: Test) {
+    useJUnitPlatform {
+        includeTags "fill_full_form"
+    }
+}
+
+task test_minimum_form(type: Test) {
+    useJUnitPlatform {
+        includeTags "fill_minimum_fields_form"
+    }
+}
