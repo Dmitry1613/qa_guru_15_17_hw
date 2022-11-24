@@ -16,12 +16,12 @@ public class RegistrationFormPage {
     private SelectStateAndCityComponent selectStateAndCityComponent = new SelectStateAndCityComponent();
     private final static String TITLE_TEXT = "Student Registration Form";
     private SelenideElement
-      firstNameInput = $("#firstName"),
-      lasttNameInput = $("#lastName"),
-      emailInput = $("#userEmail"),
-      numberInput = $("#userNumber"),
-      subjectSelect = $("#subjectsInput"),
-      currentAddressInput = $("#currentAddress");
+            firstNameInput = $("#firstName"),
+            lasttNameInput = $("#lastName"),
+            emailInput = $("#userEmail"),
+            numberInput = $("#userNumber"),
+            subjectSelect = $("#subjectsInput"),
+            currentAddressInput = $("#currentAddress");
 
     public RegistrationFormPage openPage() {
         open("/automation-practice-form");

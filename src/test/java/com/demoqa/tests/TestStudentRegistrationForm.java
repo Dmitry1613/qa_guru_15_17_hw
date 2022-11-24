@@ -5,7 +5,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-
 import static io.qameta.allure.Allure.step;
 
 public class TestStudentRegistrationForm extends TestBase {
@@ -70,7 +69,7 @@ public class TestStudentRegistrationForm extends TestBase {
             registrationFormPage.checkResultsTableVisible()
                     .checkResult("Student Name", td.firstName + " " + td.lastName)
                     .checkResult("Student Email", td.email)
-                    .checkResult("Gender",td.gender)
+                    .checkResult("Gender", td.gender)
                     .checkResult("Mobile", td.number);
         });
     }
